@@ -1,0 +1,20 @@
+{
+  "name": "DB",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dropdb": "node scripts/dropdatabase.js",
+    "createcollections": "node scripts/createcollection.js",
+    "feedsymbolcollection": "node scripts/populatesymbols.js",
+    "feedsymbolhistorycollection": "node scripts/populatesymbolhistory.js",
+    "setupdb": "npm run dropdb & npm run createcollections & npm run feedsymbolcollection & npm run feedsymbolhistorycollection"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csvtojson": "^2.0.10",
+    "mongodb": "^4.2.2"
+  }
+}
