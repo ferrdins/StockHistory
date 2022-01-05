@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from "react"
-import { Paper, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow } from "@mui/material";
+import { 
+  Paper, 
+  Table, 
+  TableBody, 
+  TableCell, 
+  TableContainer, 
+  TableFooter, 
+  TableHead, 
+  TablePagination, 
+  TableRow 
+} from "@mui/material";
 import axios from "axios";
+import {
+  Column,
+  DataCount,
+  formatDate,
+  History,
+  HistoryProps,
+} from '../shared/common';
 
-interface Column {
-  id: 'date' | 'open' | 'high' | 'low' | 'close' | 'adjclose' | 'volume';
-  label: string;
-  align?: 'right';
-}
 
 const columns: readonly Column[] = [
   {
@@ -45,27 +57,6 @@ const columns: readonly Column[] = [
   },
 ];
 
-interface History {
-  _id: string,
-  Date: string,
-  Open: string,
-  High: string,
-  Low: string,
-  Close: string,
-  "Adj Close": string,
-  Volume: string
-}
-
-interface DataCount {
-  count: string
-}
-
-interface HistoryProps {
-  symbolId: string,
-  startDt: string,
-  endDt: string
-}
-
 export default function HistoryGrid(props: HistoryProps) {
 
   const emptyData: History[] = [];
@@ -94,6 +85,9 @@ export default function HistoryGrid(props: HistoryProps) {
         setHistoryData(res.data);
         setIsLoading(false);
       })
+      .catch(err => {
+        setIsLoading(false);
+      }) 
   }, [pageNumber, pageSize, props]);
 
   useEffect(() => {
@@ -105,7 +99,7 @@ export default function HistoryGrid(props: HistoryProps) {
       .then(res => {
         setTotalRecords(parseInt(res.data.count));
       })
-  }, [props])
+  }, [props]);
 
   return (
     <TableContainer component={Paper}>
@@ -137,7 +131,7 @@ export default function HistoryGrid(props: HistoryProps) {
                         key={column.id}
                         align={column.align}
                       >
-                        {(data as any)[column.label]}
+                        {column.id === 'date' ? formatDate((data as any)[column.label]) : (data as any)[column.label]}
                       </TableCell>
                     ))
                   }
