@@ -4,7 +4,6 @@ import { TableRows, Timeline, ViewCompact } from '@mui/icons-material';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import DateFnsUtils from '@date-io/date-fns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
-// import { TextField, Tooltip } from '@material-ui/core';
 import HistoryCard from './history/HistoryCard';
 import HistoryChart from './history/HistoryChart';
 import HistoryGrid from './history/HistoryGrid';
@@ -33,7 +32,6 @@ export default function SecurityHistory() {
       }
     })
       .then(res => {
-        console.log(res.data)
         setSymbolData(res.data as any);
       })
       .catch(err => {
@@ -88,7 +86,7 @@ export default function SecurityHistory() {
             />
           </Grid>
           <Grid item xs={1} textAlign={'center'}>
-            <Button fullWidth style={{ marginTop: '1em', marginLeft: '1em' }} variant='contained' onClick={loadData}>GO</Button>
+            <Button fullWidth style={{ marginTop: '2em', marginLeft: '1em' }} variant='contained' onClick={loadData}>GO</Button>
           </Grid>
         </Grid>
       </Grid>

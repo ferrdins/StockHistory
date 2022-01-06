@@ -48,7 +48,7 @@ router.get('/:symbolId/graphdata', async (req, res) => {
       "$lte": endDate
     }
   })
-  .sort({ _id: -1 })
+  .sort({ _id: 1 })
   .toArray((err, data) => {
     if(err) {
       res.status(400).send('Server error.');
