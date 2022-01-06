@@ -98,8 +98,9 @@ export default function HistoryGrid(props: HistoryProps) {
     })
       .then(res => {
         setTotalRecords(parseInt(res.data.count));
+        setPageNumber(0);
       })
-  }, [props]);
+  },[props.symbolId, props.startDt, props.endDt]);
 
   return (
     <TableContainer component={Paper}>

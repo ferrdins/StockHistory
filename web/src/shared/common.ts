@@ -31,6 +31,12 @@ export interface SymbolInfo {
   companyName: string
 }
 
+export interface DateRange {
+  handleCustomDt: Function,
+  changeFromDt: Function,
+  changeToDt: Function
+}
+
 export const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric'})
 }
